@@ -1,448 +1,335 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
-{% load static %}
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Junction Box</title>
+  <title>RPEQ Sign-Off Services | iEngineering Australia</title>
+  <meta name="description" content="RPEQ sign-off services for electrical engineering designs in Queensland including compliance review, certification support, design verification and professional engineering review." />
 
-  <meta name="description"
-        content="Design, manufacture and supply electrical and instrument junction boxes in SS316 or mild steel with IP65 rating. Custom sizes for indoor and outdoor installations." />
-
-  <!-- Google Tag Manager -->
-  <script>
-    (function (w, d, s, l, i) {
-      w[l] = w[l] || [];
-      w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
-      var f = d.getElementsByTagName(s)[0],
-        j = d.createElement(s),
-        dl = l != "dataLayer" ? "&l=" + l : "";
-      j.async = true;
-      j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
-      f.parentNode.insertBefore(j, f);
-    })(window, document, "script", "dataLayer", "GTM-TKQV8LKX");
-  </script>
-  <!-- End Google Tag Manager -->
-
-  <!-- Shared site CSS -->
   <link rel="stylesheet" href="{% static 'css/home.css' %}">
   <link rel="stylesheet" href="{% static 'css/neplan-about.css' %}">
   <link rel="stylesheet" href="{% static 'css/consult-block.css' %}">
   <link rel="stylesheet" href="{% static 'css/footer.css' %}">
-
-  <!-- Page CSS (re-using same file) -->
-  <link rel="stylesheet" href="{% static 'css/home.css' %}">
-
+  <link rel="stylesheet" href="{% static 'css/rpeq-signoff-services.css' %}">
   <link rel="icon" href="{% static 'images/logo1.png' %}">
-  <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-
 <body>
-  <!-- Google Tag Manager (noscript) -->
-  <noscript>
-    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TKQV8LKX"
-            height="0"
-            width="0"
-            style="display:none;visibility:hidden"></iframe>
-  </noscript>
-  <!-- End Google Tag Manager (noscript) -->
 
   {% include 'header.html' %}
   {% include 'request_demo_modal.html' %}
 
-  <!-- ============ HERO ============ -->
-  <section class="bo-hero" id="home">
-    <div class="bo-container">
-      <div class="bo-hero-inner">
+  <!-- HERO -->
+  <section class="rpeq-hero" id="home">
+    <div class="rpeq-container">
+      <div class="rpeq-hero-grid">
+        <div class="rpeq-hero-copy rpeq-reveal">
+          <span class="rpeq-chip">Registered Professional Engineer of Queensland</span>
+          <h1>RPEQ Sign-Off Services for Electrical Engineering Designs</h1>
+          <p>
+            iEngineering Australia provides practical and professional RPEQ sign-off support for electrical engineering projects requiring review, certification and compliance verification in Queensland.
+          </p>
+          <p>
+            Our team supports residential, commercial and industrial projects with design assessment, engineering review and standards-focused documentation support.
+          </p>
 
-        <div class="bo-hero-left bo-reveal">
-          {% comment %} <div class="bo-hero-kicker">
-            <span>Industrial Hardware</span>
+          <div class="rpeq-hero-actions">
+            <a href="#services" class="rpeq-btn rpeq-btn-primary">Explore Services</a>
+            <a href="#contact" class="rpeq-btn rpeq-btn-secondary">Submit Inquiry</a>
+          </div>
+
+          <div class="rpeq-hero-metrics">
+            <div class="rpeq-metric">
+              <small>Focus</small>
+              <strong>RPEQ Certification</strong>
+            </div>
+            <div class="rpeq-metric">
+              <small>Coverage</small>
+              <strong>Residential, Commercial, Industrial</strong>
+            </div>
+          </div>
+        </div>
+
+        <div class="rpeq-hero-card rpeq-reveal">
+          <div class="rpeq-hero-visual rpeq-reveal">
+  <img src="{% static 'images/certified.png' %}" alt="RPEQ Sign-Off Services">
+</div>
+          {% comment %} <div class="rpeq-hero-card-body">
+            <h3>Professional review for compliant electrical designs</h3>
+            <p>
+              Design review, compliance assurance and engineering sign-off support aligned with project requirements and applicable standards.
+            </p>
           </div> {% endcomment %}
-
-          <h1 class="bo-hero-title">
-            Electrical &amp; Instrument <span>Junction Boxes</span> for Safe Field Connections
-          </h1>
-
-          <p class="bo-hero-sub">
-            A junction box is an enclosure used to safely terminate and distribute power, control or instrumentation wiring
-            at cable junction points. It provides protection, organisation and easier troubleshooting for field circuits.
-          </p>
-          <p class="bo-hero-sub">
-            Use a junction box when you need to extend wiring, add connection points, or route multiple conduits into one location,
-            while keeping terminations protected and compliant.
-          </p>
-
-          <div class="bo-hero-cta">
-            <a href="#products" class="bo-btn-primary">View Options</a>
-            <a href="#contact" class="bo-btn-ghost js-open-demo">Submit Junction Box Enquiry</a>
-          </div>
-
-          <div class="bo-hero-stats">
-            <div class="bo-stat">
-              <div class="bo-stat-label">Materials</div>
-              <div class="bo-stat-value">SS316 • MS</div>
-            </div>
-            <div class="bo-stat">
-              <div class="bo-stat-label">Protection</div>
-              <div class="bo-stat-value">IP65</div>
-            </div>
-          </div>
         </div>
-
-        <div class="bo-hero-media bo-reveal">
-          <article class="hero-feature-card">
-            <div class="hero-feature-media">
-              <!-- Change image here -->
-              <img src="{% static 'images/one.avif' %}" alt="Junction box enclosure" />
-            </div>
-
-            <div class="hero-feature-body">
-              <!-- Change title + text here -->
-              <h3 class="hero-feature-title">Uniform Temperature Distribution</h3>
-              <p class="hero-feature-text">
-                Modular wheel-mounted heaters with thermostat control help achieve stable heat throw and uniform treatment coverage.
-              </p>
-            </div>
-          </article>
-        </div>
-
       </div>
     </div>
   </section>
 
-  <!-- ============ OVERVIEW ============ -->
-  <section class="bo-overview" id="overview">
-    <div class="bo-container">
-      <div class="bo-overview-grid">
-
-        <div class="bo-overview-main bo-reveal">
-          <p class="bo-eyebrow">What we provide</p>
-          <h2 class="bo-section-title">
-            Design, Manufacture and Supply of Junction Boxes
-          </h2>
-          <p class="bo-section-text">
-            iEngineering can manufacture and supply electrical and instrument junction boxes in stainless steel 316,
-            mild steel and other materials, with IP65 protection for harsh environments.
+  <!-- INTRO -->
+  <section class="rpeq-section rpeq-section-soft" id="overview">
+    <div class="rpeq-container">
+      <div class="rpeq-two-col">
+        <div class="rpeq-reveal">
+          <p class="rpeq-eyebrow">Welcome</p>
+          <h2>Trusted Partner for RPEQ Sign-Off Services in Queensland</h2>
+          <p class="rpeq-lead">
+            We specialize in providing comprehensive Registered Professional Engineer of Queensland sign-off services for a wide range of electrical engineering designs.
           </p>
-          <p class="bo-section-text">
-            Junction boxes serve as connection points for power, control and instrumentation wiring and help make fault detection
-            and repair easier by centralising terminations and labelling.
+          <p>
+            With highly qualified and experienced engineers, we help ensure that designs are reviewed with a focus on safety, compliance, technical quality and project practicality.
           </p>
-
-          <ul class="bo-check-list">
-            <li><span class="bo-check-dot"></span>Custom sizes and layouts for site wiring</li>
-            <li><span class="bo-check-dot"></span>Electrical and instrument junction box variants</li>
-            <li><span class="bo-check-dot"></span>Material options: SS316 and mild steel</li>
-            <li><span class="bo-check-dot"></span>IP65 protection for indoor and outdoor installations</li>
-          </ul>
-
-          <div class="bo-spec-strip bo-reveal" style="margin-top:14px;">
-            <div class="bo-spec-pill"><i class="fa-solid fa-shield-halved"></i> IP65 protection</div>
-            <div class="bo-spec-pill"><i class="fa-solid fa-screwdriver-wrench"></i> Terminal blocks and wiring</div>
-            <div class="bo-spec-pill"><i class="fa-solid fa-tag"></i> According to AS/NZS standards</div>
-            <div class="bo-spec-pill"><i class="fa-solid fa-bolt"></i> Power, control and instrumentation</div>
-          </div>
         </div>
 
-        <aside class="bo-overview-media bo-reveal">
-          <figure class="bo-overview-image-wrap">
-            <img src="{% static 'images/two.avif' %}" alt="Junction box with internal terminal blocks and gland plate" />
-          </figure>
-        </aside>
-
+        <div class="rpeq-reveal">
+          <div class="rpeq-highlight-box">
+            <div class="rpeq-highlight-item">
+              <i class="fa-solid fa-circle-check"></i>
+              <span>Design review and certification support</span>
+            </div>
+            <div class="rpeq-highlight-item">
+              <i class="fa-solid fa-shield-halved"></i>
+              <span>Compliance-focused engineering assessment</span>
+            </div>
+            <div class="rpeq-highlight-item">
+              <i class="fa-solid fa-bolt"></i>
+              <span>Electrical design sign-off guidance</span>
+            </div>
+            <div class="rpeq-highlight-item">
+              <i class="fa-solid fa-file-signature"></i>
+              <span>Documentation review and verification</span>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- ============ PRODUCTS (2 TYPES ONLY) ============ -->
-<section class="bo-types" id="products">
-  <div class="bo-container">
-    <div class="bo-types-head">
-      <div>
-        <div class="bo-types-kicker">Product range</div>
-        <h2 class="bo-types-title">Junction Box Types</h2>
-      </div>
-      <p class="bo-types-sub">
-        Choose the right junction box based on circuit purpose, environment and internal arrangement.
-      </p>
-    </div>
-
-    <div class="bo-types-grid bo-types-grid--two">
-      <!-- Type 1 -->
-      <article class="bo-type-card bo-reveal">
-        <div class="bo-type-tag"><span>Electrical</span></div>
-        <h3 class="bo-type-title">Electrical Junction Boxes</h3>
-        <p class="bo-type-text">
-          Designed for power and control wiring terminations. Built to suit indoor and outdoor installations with
-          protection and layout matched to your site requirements.
+  <!-- SERVICES -->
+  <section class="rpeq-section" id="services">
+    <div class="rpeq-container">
+      <div class="rpeq-section-head rpeq-reveal">
+        <p class="rpeq-eyebrow">Our services</p>
+        <h2>What We Provide</h2>
+        <p>
+          We support projects that require formal engineering review, compliance checks and RPEQ certification input for electrical designs.
         </p>
-        <div class="bo-type-meta">
-          <span>Power and control</span>
-          <span>Custom build</span>
-        </div>
+      </div>
 
-        <div class="bo-type-actions">
-          <a class="bo-btn-primary bo-btn-sm" href="#detail-electrical">Read more</a>
+      <div class="rpeq-service-grid">
+        <article class="rpeq-service-card rpeq-reveal">
+          <div class="rpeq-service-icon"><i class="fa-solid fa-stamp"></i></div>
+          <h3>Electrical Design RPEQ Sign-Off</h3>
+          <p>
+            Review and certification support for electrical designs across residential, commercial and industrial projects.
+          </p>
+        </article>
+
+        <article class="rpeq-service-card rpeq-reveal">
+          <div class="rpeq-service-icon"><i class="fa-solid fa-scale-balanced"></i></div>
+          <h3>Compliance Assurance</h3>
+          <p>
+            Guidance to help ensure designs align with relevant legal, safety and technical requirements in Queensland.
+          </p>
+        </article>
+
+        <article class="rpeq-service-card rpeq-reveal">
+          <div class="rpeq-service-icon"><i class="fa-solid fa-user-gear"></i></div>
+          <h3>Professional Engineering Review</h3>
+          <p>
+            Assessment by experienced engineers with practical electrical engineering expertise across multiple project environments.
+          </p>
+        </article>
+
+        <article class="rpeq-service-card rpeq-reveal">
+          <div class="rpeq-service-icon"><i class="fa-solid fa-clipboard-check"></i></div>
+          <h3>Design Verification Support</h3>
+          <p>
+            Review of documentation, drawings and technical details to improve confidence before final certification and submission.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY CHOOSE -->
+  <section class="rpeq-section rpeq-band" id="why-us">
+    <div class="rpeq-container">
+      <div class="rpeq-section-head rpeq-reveal">
+        <p class="rpeq-eyebrow rpeq-eyebrow-light">Why choose us</p>
+        <h2>Why Clients Work With iEngineering Australia</h2>
+        <p>
+          Our approach combines professional accountability, technical review and responsive project support.
+        </p>
+      </div>
+
+      <div class="rpeq-feature-grid">
+        <article class="rpeq-feature-card rpeq-reveal">
+          <h3>RPEQ Accreditation</h3>
+          <p>Support from engineers registered as RPEQs with a strong commitment to professional competence and ethical practice.</p>
+        </article>
+
+        <article class="rpeq-feature-card rpeq-reveal">
+          <h3>Safety First</h3>
+          <p>Rigorous review focused on identifying risks and improving the safety and reliability of electrical systems.</p>
+        </article>
+
+        <article class="rpeq-feature-card rpeq-reveal">
+          <h3>Timely and Efficient Service</h3>
+          <p>Responsive support to help meet project deadlines without compromising technical quality.</p>
+        </article>
+
+        <article class="rpeq-feature-card rpeq-reveal">
+          <h3>Client-Centric Approach</h3>
+          <p>Practical communication and tailored support aligned with the needs of each project and stakeholder team.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="generators-1-project" id="projects">
+  <div class="generators-container">
+    <header class="generators-header">
+      <p class="generators-kicker">Past Project Experience</p>
+      <h2>iEngineering Australia Pty Ltd – RPEQ Certification Projects</h2>
+    </header>
+
+    <div class="generators-grid">
+
+      <!-- 1 -->
+      <article class="generators-card reveal-left is-visible">
+        <span class="generators-year">2024–2026</span>
+        <div class="generators-body">
+          <h3>RPEQ Certification – Gate Controllers and UPS Enclosures (FAAC)</h3>
+          <p class="generators-client"><strong>Location:</strong> NSW, Australia</p>
+          <ul class="generators-points">
+            <li><strong>Scope:</strong> Detailed review of design drawings and technical documentation</li>
+            <li><strong>Compliance:</strong> Verification of system compliance and incorporation of required updates</li>
+            <li><strong>Outcome:</strong> Final drawings validated and signed off by an RPEQ engineer</li>
+          </ul>
         </div>
       </article>
 
-      <!-- Type 2 -->
-      <article class="bo-type-card bo-reveal">
-        <div class="bo-type-tag"><span>Instrumentation</span></div>
-        <h3 class="bo-type-title">Instrument Junction Boxes</h3>
-        <p class="bo-type-text">
-          Designed for instrument signal wiring and field device terminations. Suitable for outdoor signal wiring with
-          practical internal wiring and termination arrangement.
-        </p>
-        <div class="bo-type-meta">
-          <span>Signal wiring</span>
-          <span>Field terminations</span>
+      <!-- 2 -->
+      <article class="generators-card reveal-right is-visible">
+        <span class="generators-year">2025–2026</span>
+        <div class="generators-body">
+          <h3>RPEQ Certification – Battery Cabinet (Lead Acid Installation)</h3>
+          <p class="generators-client"><strong>Location:</strong> NSW, Australia</p>
+          <ul class="generators-points">
+            <li><strong>Scope:</strong> Review of design drawings and supporting documentation</li>
+            <li><strong>Compliance:</strong> Verification against relevant standards including AS 3011</li>
+            <li><strong>Outcome:</strong> Final documentation reviewed and certified for safe implementation</li>
+          </ul>
         </div>
+      </article>
 
-        <div class="bo-type-actions">
-          <a class="bo-btn-primary bo-btn-sm" href="#detail-instrument">Read more</a>
+      <!-- 3 -->
+      <article class="generators-card reveal-left is-visible">
+        <span class="generators-year">2025–2026</span>
+        <div class="generators-body">
+          <h3>RPEQ Certification – Goondiwindi HV Design</h3>
+          <p class="generators-client"><strong>Location:</strong> NSW, Australia</p>
+          <ul class="generators-points">
+            <li><strong>Client:</strong> QA Electrical</li>
+            <li><strong>Scope:</strong> Review of HV design and associated technical documentation</li>
+            <li><strong>Assessment:</strong> Verification based on transformers, switchgear, and battery system data</li>
+            <li><strong>Outcome:</strong> Final design documentation reviewed and certified by an RPEQ engineer</li>
+          </ul>
         </div>
       </article>
     </div>
   </div>
 </section>
-<!-- ============ DETAILS (ALTERNATING CARDS) ============ -->
-<section class="jb-details" id="details">
-  <div class="bo-container">
-
-    <!-- Card 1: text left, image right -->
-    <article class="jb-detail-card bo-reveal" id="detail-electrical">
-      <div class="jb-detail-grid">
-        <div class="jb-detail-text">
-          <p class="jb-detail-eyebrow">Type 1</p>
-          <h3 class="jb-detail-title">Electrical Junction Boxes</h3>
-          <p class="jb-detail-para">
-            Electrical junction boxes are used as safe connection points for power and control wiring. They help with
-            cable routing, branching circuits, isolation coordination and easier fault finding by centralising terminations.
-          </p>
-
-          <ul class="jb-detail-list">
-            <li>Used for power and control wiring terminations</li>
-            <li>Custom enclosure size and gland entry layout</li>
-            <li>Designed for indoor and outdoor installations</li>
-            <li>Options for terminals, labels and internal wiring arrangement</li>
-          </ul>
-
-          <div class="jb-detail-cta">
-            <a class="bo-btn-ghost bo-btn-sm" href="#contact">Enquire about Electrical JB</a>
-          </div>
-        </div>
-
-        <div class="jb-detail-media">
-          <img src="{% static 'images/three.avif' %}"
-               alt="Electrical junction box with cable glands and terminal blocks" />
-        </div>
-      </div>
-    </article>
-
-    <!-- Card 2: image left, text right (alternate) -->
-    <article class="jb-detail-card jb-detail-card--alt bo-reveal" id="detail-instrument">
-      <div class="jb-detail-grid">
-        <div class="jb-detail-media">
-          <img src="{% static 'images/four.avif' %}"
-               alt="Instrument junction box for field device signal wiring" />
-        </div>
-
-        <div class="jb-detail-text">
-          <p class="jb-detail-eyebrow">Type 2</p>
-          <h3 class="jb-detail-title">Instrument Junction Boxes</h3>
-          <p class="jb-detail-para">
-            Instrument junction boxes are used for signal wiring and field device terminations. They are commonly used
-            across industrial facilities to bring multiple instrument cables into one organised, labelled termination point.
-          </p>
-
-          <ul class="jb-detail-list">
-            <li>Used for instrument signal wiring and field terminations</li>
-            <li>Supports clean layout for multiple field devices</li>
-            <li>Suitable for outdoor signal wiring when correctly sealed</li>
-            <li>Options for terminals, labels, internal wiring and mounting</li>
-          </ul>
-
-          <div class="jb-detail-cta">
-            <a class="bo-btn-ghost bo-btn-sm" href="#contact">Enquire about Instrument JB</a>
-          </div>
-        </div>
-      </div>
-    </article>
-
-  </div>
-</section>
-
-
-  <!-- ============ PROCESS ============ -->
-  <section class="bo-process" id="process">
-    <div class="bo-container">
-      <div class="bo-process-inner">
-
-        <div class="bo-process-intro bo-reveal">
-          <p class="bo-eyebrow">How we work</p>
-          <h2 class="bo-section-title">Junction Box Delivery Workflow</h2>
-          <p class="bo-process-text">
-            We follow a structured process to make sure your junction boxes arrive site-ready with the correct layout,
-            terminations and protection level.
-          </p>
-          <p class="bo-process-text">
-            Share your wiring philosophy, I O list, cable schedule, gland requirements and installation location.
-            We will align the enclosure design to your environment and maintenance needs.
+  <!-- PROCESS -->
+  <section class="rpeq-section" id="process">
+    <div class="rpeq-container">
+      <div class="rpeq-two-col-process">
+        <div class="rpeq-reveal">
+          <p class="rpeq-eyebrow">How we support projects</p>
+          <h2>Simple and Practical Review Workflow</h2>
+          <p>
+            Our workflow is designed to help clients move from design review to certification support in a clear and efficient way.
           </p>
         </div>
 
-        <div class="bo-timeline bo-reveal">
-          <ol class="bo-timeline-list">
-            <li class="bo-timeline-item">
-              <div class="bo-timeline-icon">1</div>
-              <div class="bo-timeline-content">
-                <h3 class="bo-timeline-title">Requirements and Environment</h3>
-                <p class="bo-timeline-text">
-                  Confirm indoor or outdoor location, cable entry direction, number of cores, terminals, labels,
-                  and IP rating expectations.
-                </p>
+        <div class="rpeq-reveal">
+          <ol class="rpeq-timeline">
+            <li>
+              <span>1</span>
+              <div>
+                <h3>Review drawings and design documents</h3>
+                <p>We assess the submitted engineering information, design intent and available documentation.</p>
               </div>
             </li>
-            <li class="bo-timeline-item">
-              <div class="bo-timeline-icon">2</div>
-              <div class="bo-timeline-content">
-                <h3 class="bo-timeline-title">Enclosure Design and Layout</h3>
-                <p class="bo-timeline-text">
-                  Select material (SS316 or mild steel), size, gland plate arrangement, terminal blocks and internal wiring layout.
-                </p>
+            <li>
+              <span>2</span>
+              <div>
+                <h3>Check compliance and technical adequacy</h3>
+                <p>We review the design against applicable requirements, standards and engineering expectations.</p>
               </div>
             </li>
-            <li class="bo-timeline-item">
-              <div class="bo-timeline-icon">3</div>
-              <div class="bo-timeline-content">
-                <h3 class="bo-timeline-title">Manufacture and Assembly</h3>
-                <p class="bo-timeline-text">
-                  Fabrication, finishing, drilling and fitment of hardware including hinges, latches, bolts and accessories.
-                  Assembly of terminals and identification as required.
-                </p>
+            <li>
+              <span>3</span>
+              <div>
+                <h3>Identify gaps or required updates</h3>
+                <p>Any issues, clarifications or updates are communicated clearly for action.</p>
               </div>
             </li>
-            <li class="bo-timeline-item">
-              <div class="bo-timeline-icon">4</div>
-              <div class="bo-timeline-content">
-                <h3 class="bo-timeline-title">QA and Supply Coordination</h3>
-                <p class="bo-timeline-text">
-                  Basic checks for enclosure sealing, fit, labeling and delivery readiness, followed by packing and dispatch to site.
-                </p>
+            <li>
+              <span>4</span>
+              <div>
+                <h3>Support final certification pathway</h3>
+                <p>Once technical requirements are addressed, the project can proceed toward sign-off support.</p>
               </div>
             </li>
           </ol>
         </div>
-
       </div>
     </div>
   </section>
-<section class="lv-electric-panel-project" id="projects">
-  <div class="lv-epp-container">
-    <header class="lv-epp-header">
-      <p class="lv-epp-kicker">Past Project Experience</p>
-      {% comment %} <h2>iEngineering Australia Pty Ltd Past Project</h2> {% endcomment %}
-    </header>
 
-    <div class="lv-epp-grid">
-      
-      <!-- Project Card 2 -->
-      <article class="lv-epp-card bo-reveal">
-        <figure class="lv-epp-media">
-          <img src="{% static 'images/pro1.avif' %}" alt="Project 2 Description" />
-          <span class="lv-epp-year">2020</span>
-        </figure>
-        <div class="lv-epp-body">
-          <h3>Supply of 60 × Stainless-Steel Junction Boxes</h3>
-          <div class="lv-epp-location">
-            <strong>Location :</strong> NSW Australia
-          </div>
-          <div class="lv-epp-scope">
-            <p><strong>Scope of Work:</strong>  Supply of fully customised SS junction boxes integrated with prewired electrical panels for harsh-environment applications.</p>
-          </div>
-        </div>
-      </article>
-
-      <article class="lv-epp-card bo-reveal">
-        <figure class="lv-epp-media">
-          <img src="{% static 'images/pro2.avif' %}" alt="Supply & installation 2 x 11 KV Junction Boxes" />
-          <span class="lv-epp-year">2024</span>
-        </figure>
-        <div class="lv-epp-body">
-          <h3>Supply & installation 2 x 11 KV Junction Boxes </h3>
-          <div class="lv-epp-location">
-            <strong>Location :</strong> Nauru
-          </div>
-          <div class="lv-epp-scope">
-            <p><strong>Scope of Work:</strong> Supply installation of 2 x 11 KV Outdoor Junction boxes to utility. </p>
-          </div>
-          </div>
-      </article>
-    </div>
-  </div>
-</section>
-  <!-- ============ LOCATIONS ============ -->
-  <section class="bo-industries" id="locations-notes">
-    <div class="bo-container">
-      <div class="bo-industries-header bo-reveal">
-        <p class="bo-eyebrow">Installation notes</p>
-        <h2 class="bo-section-title">Where Junction Boxes Are Typically Located</h2>
-        <p>
-          Common placement depends on duct runs, instrument field distribution and accessibility for maintenance.
-        </p>
+  <!-- APPLICATIONS -->
+  <section class="rpeq-section rpeq-section-soft" id="applications">
+    <div class="rpeq-container">
+      <div class="rpeq-section-head rpeq-reveal">
+        <p class="rpeq-eyebrow">Project coverage</p>
+        <h2>Suitable for Multiple Project Types</h2>
       </div>
 
-      <div class="bo-industries-grid">
-        <article class="bo-industry-card bo-reveal">
-          <h3 class="bo-industry-title">Duct and Conduit Intersections</h3>
-          <p class="bo-industry-text">
-            Installed at intersections of duct runs to provide a safe termination and routing point.
-          </p>
+      <div class="rpeq-application-grid">
+        <article class="rpeq-application-card rpeq-reveal">
+          <h3>Residential Projects</h3>
+          <p>Engineering review support for electrical design packages requiring qualified sign-off input.</p>
         </article>
-
-        <article class="bo-industry-card bo-reveal">
-          <h3 class="bo-industry-title">Across Process Facilities</h3>
-          <p class="bo-industry-text">
-            Used to connect multiple field instruments to control systems and distributed panels.
-          </p>
+        <article class="rpeq-application-card rpeq-reveal">
+          <h3>Commercial Facilities</h3>
+          <p>Compliance and design verification support for business, building and infrastructure developments.</p>
         </article>
-
-        <article class="bo-industry-card bo-reveal">
-          <h3 class="bo-industry-title">Aligned to Baselines and Routing</h3>
-          <p class="bo-industry-text">
-            Locations are coordinated along routing baselines so duct patterns remain consistent and maintainable.
-          </p>
+        <article class="rpeq-application-card rpeq-reveal">
+          <h3>Industrial Installations</h3>
+          <p>Professional review for more complex systems where safety, documentation and compliance are critical.</p>
         </article>
-
-        <article class="bo-industry-card bo-reveal">
-          <h3 class="bo-industry-title">Outdoor Signal Wiring Points</h3>
-          <p class="bo-industry-text">
-            Outdoor instrument signal wiring JBs should be fully installed with mounting, hardware, nameplates,
-            terminal blocks and wiring.
-          </p>
-        </article>
-
-        <article class="bo-industry-card bo-reveal">
-          <h3 class="bo-industry-title">Maintenance Access Areas</h3>
-          <p class="bo-industry-text">
-            Placed where technicians can isolate, test and repair circuits without disturbing upstream cables.
-          </p>
-        </article>
-
-        <article class="bo-industry-card bo-reveal">
-          <h3 class="bo-industry-title">Indoor and Outdoor Use</h3>
-          <p class="bo-industry-text">
-            Junction boxes are used both indoors and outdoors as connection points for power, control and instrumentation.
-          </p>
+        <article class="rpeq-application-card rpeq-reveal">
+          <h3>Electrical Upgrade Works</h3>
+          <p>Support for modified or upgraded systems that require formal engineering review and sign-off alignment.</p>
         </article>
       </div>
     </div>
   </section>
 
-  <!-- ============ ABOUT ============ -->
+  <!-- CTA -->
+  <section class="rpeq-cta-strip">
+    <div class="rpeq-container rpeq-reveal">
+      <div>
+        <p class="rpeq-eyebrow">Need engineering sign-off support?</p>
+        <h2>Let’s discuss your RPEQ certification requirements</h2>
+      </div>
+      <a href="#contact" class="rpeq-btn rpeq-btn-primary">Contact Us</a>
+    </div>
+  </section>
+
+  <!-- KEEP LOWER SECTION AS EXISTING TEMPLATE -->
   <section id="about-us" class="cmms-contact-form-wrap">
     <div class="cmms-contact-form-inner">
       <p class="eyebrow-neplan-what-we-bring">About us</p>
@@ -450,17 +337,13 @@
         About us – where vision meets execution!
       </h2>
       <p class="about-text-abou-ieng">
-        iEngineering is your trusted partner for advanced electrical and energy solutions across Australia, Fiji, and
-        India. We deliver high-quality hardware products backed by expert engineering, reliable installation and dedicated
-        local support.
+        iEngineering Australia is a trusted engineering partner delivering advanced electrical and energy solutions across Australia, Fiji and India. Our team supports utilities, industrial facilities, renewable projects and infrastructure developments with practical design, technical studies, compliance support and field-focused engineering services.
       </p>
     </div>
   </section>
 
-  <!-- ============ MISSION / VISION / VALUES ============ -->
   <section class="bo-mvv-section" id="mission">
     <div class="bo-container">
-
       <div class="bo-mvv-tabs">
         <button class="bo-mvv-tab is-active" data-tab="mission">Mission</button>
         <button class="bo-mvv-tab" data-tab="vision">Vision</button>
@@ -468,13 +351,11 @@
       </div>
 
       <div class="bo-mvv-content-wrap">
-
         <div class="bo-mvv-content is-active" data-tab="mission">
           <div class="bo-mvv-text">
             <h2>Our Mission</h2>
             <p>
-              Our mission is to enhance efficiency, ensure quality control, and deliver customer satisfaction through
-              practical engineering solutions aligned to global standards and sustainable outcomes.
+              Our mission is to improve electrical safety, system reliability and engineering quality by delivering practical, standards-aligned solutions that create long-term value for our clients and stakeholders.
             </p>
           </div>
           <div class="bo-mvv-image">
@@ -486,12 +367,11 @@
           <div class="bo-mvv-text">
             <h2>Our Vision</h2>
             <p>
-              To be a trusted engineering partner across Australia, Fiji, India and the Pacific, delivering resilient
-              and low-carbon infrastructure for utilities, industry and the built environment.
+              To be a trusted engineering partner across Australia, Fiji, India and the Pacific, delivering resilient, future-ready and reliable infrastructure solutions for utilities, industry and the built environment.
             </p>
           </div>
           <div class="bo-mvv-image">
-            <img src="{% static 'images/vision.avif' %}" alt="Strategic vision graphic" />
+            <img src="{% static 'images/vision.avif' %}" alt="vision graphic" />
           </div>
         </div>
 
@@ -499,181 +379,154 @@
           <div class="bo-mvv-text">
             <h2>Our Values</h2>
             <p>
-              We operate with integrity, safety and accountability, focusing on clear communication and long-term
-              partnerships so every delivery is maintainable and dependable.
+              We work with integrity, accountability and technical excellence, with a strong focus on safety, clear communication, quality delivery and long-term client partnerships.
             </p>
           </div>
           <div class="bo-mvv-image">
-            <img src="{% static 'images/values.avif' %}" alt="Core values graphic" />
+            <img src="{% static 'images/values.avif' %}" alt="values graphic" />
           </div>
         </div>
-
       </div>
     </div>
   </section>
-  <!-- ===== SECTION 1: Our Journey ===== -->
-<section id="about-us" class="cmms-contact-form-wrap">
-  <div class="cmms-contact-form-inner">
-    <p class="eyebrow-neplan-what-we-bring">Our Journey</p>
-    
-    <p class="about-text-abou-ieng">
-      Founded in 2013, iEngineering Australia delivers a comprehensive range of high-quality electrical and energy
-      hardware solutions tailored for Australian and Pacific conditions. From design and engineering to manufacturing,
-      testing, and commissioning support, we ensure every product—whether switchboards, transformers, oil filtration
-      machines, solar systems, or EV chargers—is safe, reliable, and built to last.
-    </p>
-  </div>
-</section>
 
-<!-- ===== SECTION 2: Where We Operate ===== -->
-<section id="about-us" class="cmms-contact-form-wrap">
-  <div class="cmms-contact-form-inner">
-    <p class="eyebrow-neplan-what-we-bring">Where We Operate</p>
-    
-    <p class="about-text-abou-ieng">
-      iEngineering Australia operates across Australia, Fiji, and India, delivering reliable technology and asset
-      management solutions to organisations of all sizes—from local enterprises to large multinational companies.
-    </p>
-  </div>
-</section>
-
-
-
-<!-- ===== SECTION 3: Locations ===== -->
-<section class="ieng-locations" id="locations">
-  <div class="ieng-container">
-
-    <div class="ieng-loc-grid">
-      <!-- Australia -->
-      <article class="ieng-loc-card ieng-loc-card--au">
-        <header class="ieng-loc-head">
-          <span class="ieng-loc-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" width="20" height="20">
-              <path d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0 5.5z"
-                fill="currentColor" />
-            </svg>
-          </span>
-          <h4 class="ieng-loc-title">Australia – Sydney</h4>
-        </header>
-
-        <p class="ieng-loc-row"><strong>Phone:</strong> +61 (02) 8318 1490</p>
-        <p class="ieng-loc-row"><strong>Email:</strong> <a href="mailto:enquiries@iengaust.com.au">enquiries@iengaust.com.au</a></p>
-        <p class="ieng-loc-address">Warawara Cct, Quakers Hill NSW 2763, Australia</p>
-
-        <a class="ieng-loc-btn" target="_blank" rel="noopener"
-           href="https://www.google.com/maps?ll=-33.723524,150.875902&z=5&t=m&hl=en-US&gl=US&mapclient=embed&cid=2860432314088839065">
-          View map
-        </a>
-      </article>
-
-      <!-- India -->
-      <article class="ieng-loc-card ieng-loc-card--in">
-        <header class="ieng-loc-head">
-          <span class="ieng-loc-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" width="20" height="20">
-              <path d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0 5.5z"
-                fill="currentColor" />
-            </svg>
-          </span>
-          <h4 class="ieng-loc-title">India – Pune</h4>
-        </header>
-
-        <p class="ieng-loc-row"><strong>Phone:</strong> +91 9168627258</p>
-        <p class="ieng-loc-row"><strong>Email:</strong> <a href="mailto:shila@iengaust.com.au">shila@iengaust.com.au</a></p>
-        <p class="ieng-loc-address">
-          Navale IT Zone, Office No. 501, 5th Floor, A-Wing, Near Navale Bridge, Mumbai-Bangalore Highway, Narhe,
-          Pune – 411041.
-        </p>
-
-        <a class="ieng-loc-btn" target="_blank" rel="noopener"
-           href="https://www.google.com/maps/place/Navale+IT+Zone+Phase2/@18.4597518,73.8199254,17z/">
-          View map
-        </a>
-      </article>
-
-      <!-- Fiji -->
-      <article class="ieng-loc-card ieng-loc-card--fj">
-        <header class="ieng-loc-head">
-          <span class="ieng-loc-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" width="20" height="20">
-              <path d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0 5.5z"
-                fill="currentColor" />
-            </svg>
-          </span>
-          <h4 class="ieng-loc-title">Fiji – Suva</h4>
-        </header>
-
-        <p class="ieng-loc-row"><strong>Phone:</strong> +679 9488589</p>
-        <p class="ieng-loc-row"><strong>Email:</strong> <a href="mailto:enquiries@iengaust.com.au">enquiries@iengaust.com.au</a></p>
-        <p class="ieng-loc-address">Suva, Fiji.</p>
-
-        <a class="ieng-loc-btn" target="_blank" rel="noopener"
-           href="https://www.google.com/maps/search/Lot+17,+River+Drive+Pacific+Harbour+Navua+Suva+Fiji/">
-          View map
-        </a>
-      </article>
+  <section class="cmms-contact-form-wrap">
+    <div class="cmms-contact-form-inner">
+      <p class="eyebrow-neplan-what-we-bring">Our Journey</p>
+      <p class="about-text-abou-ieng">
+        Founded in 2013, iEngineering Australia has grown into a multidisciplinary engineering business supporting electrical, energy and infrastructure projects with design, studies, testing, consulting and implementation support. Our work combines technical depth with practical delivery experience to help clients solve real project and operational challenges.
+      </p>
     </div>
+  </section>
 
-  </div>
-</section>
+  <section class="cmms-contact-form-wrap">
+    <div class="cmms-contact-form-inner">
+      <p class="eyebrow-neplan-what-we-bring">Where We Operate</p>
+      <p class="about-text-abou-ieng">
+        iEngineering Australia operates across Australia, Fiji and India, delivering reliable engineering and technology solutions to local businesses, utilities, contractors, developers and large multinational organizations.
+      </p>
+    </div>
+  </section>
 
-  <!-- CONTACT -->
+  <section class="ieng-locations" id="locations">
+    <div class="ieng-container">
+      <div class="ieng-loc-grid">
+        <article class="ieng-loc-card ieng-loc-card--au">
+          <header class="ieng-loc-head">
+            <span class="ieng-loc-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="20" height="20">
+                <path d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0 5.5z" fill="currentColor" />
+              </svg>
+            </span>
+            <h4 class="ieng-loc-title">Australia – Sydney</h4>
+          </header>
+
+          <p class="ieng-loc-row"><strong>Phone:</strong> +61 (02) 8318 1490</p>
+          <p class="ieng-loc-row"><strong>Email:</strong> <a href="mailto:enquiries@iengaust.com.au">enquiries@iengaust.com.au</a></p>
+          <p class="ieng-loc-address">Warawara Cct, Quakers Hill NSW 2763, Australia</p>
+
+          <a class="ieng-loc-btn" target="_blank" rel="noopener"
+            href="https://www.google.com/maps?ll=-33.723524,150.875902&z=5&t=m&hl=en-US&gl=US&mapclient=embed&cid=2860432314088839065">
+            View map
+          </a>
+        </article>
+
+        <article class="ieng-loc-card ieng-loc-card--in">
+          <header class="ieng-loc-head">
+            <span class="ieng-loc-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="20" height="20">
+                <path d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0 5.5z" fill="currentColor" />
+              </svg>
+            </span>
+            <h4 class="ieng-loc-title">India – Pune</h4>
+          </header>
+
+          <p class="ieng-loc-row"><strong>Phone:</strong> +91 9168627258</p>
+          <p class="ieng-loc-row"><strong>Email:</strong> <a href="mailto:shila@iengaust.com.au">shila@iengaust.com.au</a></p>
+          <p class="ieng-loc-address">
+            Navale IT Zone, Office No. 501, 5th Floor, A-Wing, Near Navale Bridge, Mumbai-Bangalore Highway, Narhe, Pune – 411041.
+          </p>
+
+          <a class="ieng-loc-btn" target="_blank" rel="noopener"
+            href="https://www.google.com/maps/place/Navale+IT+Zone+Phase2/@18.4597518,73.8199254,17z/">
+            View map
+          </a>
+        </article>
+
+        <article class="ieng-loc-card ieng-loc-card--fj">
+          <header class="ieng-loc-head">
+            <span class="ieng-loc-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="20" height="20">
+                <path d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0 5.5z" fill="currentColor" />
+              </svg>
+            </span>
+            <h4 class="ieng-loc-title">Fiji – Suva</h4>
+          </header>
+
+          <p class="ieng-loc-row"><strong>Phone:</strong> +679 9488589</p>
+          <p class="ieng-loc-row"><strong>Email:</strong> <a href="mailto:enquiries@iengaust.com.au">enquiries@iengaust.com.au</a></p>
+          <p class="ieng-loc-address">Suva, Fiji.</p>
+
+          <a class="ieng-loc-btn" target="_blank" rel="noopener"
+            href="https://www.google.com/maps/search/Lot+17,+River+Drive+Pacific+Harbour+Navua+Suva+Fiji/">
+            View map
+          </a>
+        </article>
+      </div>
+    </div>
+  </section>
+
   <section id="contact">
     {% include "components/contact_block.html" with form_only=True %}
   </section>
 
   {% include 'footer.html' %}
 
-  <!-- JS includes -->
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
-  <script defer src="{% static 'js/demo_form.js' %}"></script>
-  <script defer src="{% static 'js/main.js' %}"></script>
-  <script defer src="{% static 'js/neplan.js' %}"></script>
-
-  <!-- Simple reveal script for .bo-reveal -->
-  <script>
-    (function () {
-      const els = document.querySelectorAll(".bo-reveal");
-      if (!("IntersectionObserver" in window)) {
-        els.forEach((el) => el.classList.add("is-visible"));
-        return;
-      }
-      const io = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((e) => {
-            if (e.isIntersecting) {
-              e.target.classList.add("is-visible");
-              io.unobserve(e.target);
-            }
-          });
-        },
-        { threshold: 0.15 }
-      );
-      els.forEach((el) => io.observe(el));
-    })();
-  </script>
-
   <script>
     document.addEventListener("DOMContentLoaded", function () {
+      const revealEls = document.querySelectorAll(".rpeq-reveal");
+      const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) entry.target.classList.add("is-visible");
+        });
+      }, { threshold: 0.12 });
+
+      revealEls.forEach((el) => revealObserver.observe(el));
+
       const tabs = document.querySelectorAll(".bo-mvv-tab");
       const panels = document.querySelectorAll(".bo-mvv-content");
-      if (!tabs.length) return;
 
       tabs.forEach((tab) => {
         tab.addEventListener("click", () => {
           const target = tab.dataset.tab;
-
           tabs.forEach((t) => t.classList.toggle("is-active", t === tab));
-
           panels.forEach((panel) => {
-            const match = panel.dataset.tab === target;
-            panel.classList.toggle("is-active", match);
+            panel.classList.toggle("is-active", panel.dataset.tab === target);
           });
         });
       });
     });
   </script>
+  <script>
+  (function () {
+    const cards = document.querySelectorAll('.generators-card');
 
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+
+    cards.forEach((card, i) => {
+      if (!card.classList.contains('reveal-left') && !card.classList.contains('reveal-right')) {
+        card.classList.add(i % 2 ? 'reveal-right' : 'reveal-left');
+      }
+      io.observe(card);
+    });
+  })();
+</script>
 </body>
 </html>
