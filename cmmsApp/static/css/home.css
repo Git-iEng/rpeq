@@ -306,12 +306,12 @@ a{
 .rpeq-hero-visual{
   display: flex;
   justify-content: center;
-  align-items: flex-end;
+  align-items: flex-start;
   min-height: 520px;
 }
 
 .rpeq-hero-visual img{
-  width: min(100%, 560px);
+  width: min(100%, 450px);
   height: auto;
   object-fit: contain;
   display: block;
@@ -689,6 +689,7 @@ a{
   text-decoration: none !important;
   font-weight: 700;
 }
+
 
 
 :root{
