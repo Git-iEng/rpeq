@@ -1,202 +1,336 @@
 :root{
-  --ink:#0b2239; --muted:#6a7a89;
-  --brand:#0c8c73; --brand-weak:#e6f6f3;
-  --accent:#b83b5e; --error:#d72c2c; --surface:#fff;
+  --ink:#0b2239;
+  --muted:#6a7a89;
+  --brand:#0c8c73;
+  --brand-weak:#e6f6f3;
+  --accent:#b83b5e;
+  --error:#d72c2c;
+  --surface:#ffffff;
   --shadow:0 16px 44px rgba(10,36,60,.18);
 }
 
-.modal{position:fixed;inset:0;display:none;z-index:999}
-.modal.is-open{display:block}
-.modal__backdrop{position:absolute;inset:0;background:rgba(8,18,28,.55);backdrop-filter:blur(2px)}
-.modal__dialog{
-  position:relative;max-width:860px;margin:6vh auto;background:var(--surface);
-  border-radius:18px;box-shadow:var(--shadow);padding:22px 22px 26px
-}
-.modal__close{position:absolute;top:10px;right:12px;width:36px;height:36px;border:0;border-radius:50%;
-  background:#f2f4f6;color:#334;cursor:pointer;font-size:20px;line-height:36px}
-
-.modal__title{margin:6px 0 4px;color:var(--ink);font:800 28px/1.2 system-ui}
-.modal__subtitle{margin:0 0 12px;color:var(--muted)}
-
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-.field{display:flex;flex-direction:column;gap:6px}
-.field--full{grid-column:1/-1}
-label{font-weight:600;color:var(--ink)}
-input,select,textarea{border:1px solid #e1e6ea;border-radius:10px;padding:10px 12px;font:500 14px/1.4 system-ui;outline:0}
-input:focus,select:focus,textarea:focus{box-shadow:0 0 0 3px var(--brand-weak);border-color:#bfeee3}
-.error{color:var(--error);min-height:14px;font-size:12px}
-
-.privacy{font-size:12px;color:var(--muted);margin:8px 0 14px}
-
-.btn-submit{position:relative;border:0;border-radius:999px;background:var(--accent);
-  color:#fff;font-weight:800;padding:12px 18px;cursor:pointer;display:inline-flex;align-items:center;gap:10px}
-.btn-submit[disabled]{opacity:.7;cursor:not-allowed}
-.spinner{width:16px;height:16px;border:2px solid rgba(255,255,255,.45);border-top-color:#fff;border-radius:50%;display:none;animation:spin .7s linear infinite}
-.btn-submit.is-loading .spinner{display:inline-block}
-@keyframes spin{to{transform:rotate(360deg)}}
-
-@media (max-width:720px){.grid{grid-template-columns:1fr}}
-/* ==== responsive modal sizing + internal scroll ==== */
-
-/* give the overlay a little padding so the dialog can shrink on narrow screens */
-.modal { padding: 12px; }
-
-/* the dialog is a vertical layout: title, subtitle, then a scrollable form */
-.modal__dialog{
-  width: min(860px, 100%);
-  max-height: calc(100dvh - 8vh);   /* use dynamic viewport height on mobile */
-  overflow: hidden;
-  display: grid;
-  grid-template-rows: auto auto 1fr; /* h2, p, form grows & scrolls */
+.modal{
+  position: fixed;
+  inset: 0;
+  display: none;
+  z-index: 20000;
+  padding: 56px 16px 20px;
 }
 
-/* make the form the scroll container */
-#demoForm{
-  overflow: auto;
-  min-height: 0;                     /* allow the grid child to shrink */
-  -webkit-overflow-scrolling: touch; /* smooth iOS scrolling */
-  padding-right: 2px;                /* avoid scrollbar overlap on some UAs */
-}
-
-/* keep inputs comfortable on small screens */
-@media (max-width: 900px){
-  .grid{ grid-template-columns: 1fr; }  /* single column sooner */
-}
-
-/* full-screen modal on very small phones */
-@media (max-width: 560px){
-  .modal{ padding: 0; }                     /* edge-to-edge */
-  .modal__dialog{
-    margin: 0; border-radius: 0;
-    width: 100vw; height: 100dvh; max-height: 100dvh;
-    grid-template-rows: auto auto 1fr;
-  }
-  .modal__title{ font-size: 22px; }
-  .modal__subtitle{ font-size: 14px; }
-  .modal__close{ top: 8px; right: 8px; }
-  #demoForm{ padding: 0 16px max(16px, env(safe-area-inset-bottom)); }
-}
-
-/* optional: keep the submit button visible while scrolling */
-@supports (position: sticky){
-  #submitBtn{
-    position: sticky;
-    bottom: 0;
-    margin-top: 12px;
-  }
-}
-/* ===== Modal scroll + sticky submit ===== */
-
-/* Make the dialog a 3-row grid: title, subtitle, scrollable form */
-.modal__dialog{
-  display: grid;
-  grid-template-rows: auto auto 1fr;     /* h2, p, form */
-  width: min(860px, 100%);
-  max-height: min(92dvh, 820px);         /* avoid cutting on small screens */
-  overflow: hidden;
-}
-
-/* The form is the scroll container */
-#demoForm{
-  overflow: auto;
-  min-height: 0;                          /* allow grid child to shrink */
-  -webkit-overflow-scrolling: touch;
-  padding-right: 2px;                      /* keep scrollbar off the edge */
-  padding-bottom: 80px;                    /* 40px breathing room + 40px for sticky btn */
-}
-
-/* Keep the submit button always visible (sticky within the scrolling form) */
-#submitBtn{
-  position: sticky;
-  bottom: 24px;                            /* distance from bottom edge */
-  z-index: 2;
-  margin-top: 16px;
-  box-shadow: 0 8px 24px rgba(184, 59, 94, 0.28); /* slight elevation */
-}
-
-/* Optional: soften the content behind the floating button */
-#demoForm::after{
-  content: "";
+.modal.is-open{
   display: block;
-  height: 40px;                            /* breathing space at very end */
 }
 
-/* Responsive tweaks */
-@media (max-width: 900px){
-  .grid{ grid-template-columns: 1fr; }     /* single column sooner */
+.modal__backdrop{
+  position: absolute;
+  inset: 0;
+  background: rgba(8,18,28,.55);
+  backdrop-filter: blur(2px);
 }
 
-@media (max-width: 560px){
-  .modal{ padding: 0; }
-  .modal__dialog{
-    margin: 0; border-radius: 0;
-    width: 100vw; height: 100dvh; max-height: 100dvh;
-  }
-  #demoForm{
-    padding-left: 16px;
-    padding-right: 16px;
-    padding-bottom: 96px;                  /* bit more room on tiny screens */
-  }
-  .modal__title{ font-size: 22px; }
-  .modal__subtitle{ font-size: 14px; }
-  .modal__close{ top: 8px; right: 8px; }
-}
-/* --- Outside padding so the dialog breathes: 40px top/bottom on desktop --- */
-.modal{ padding: 40px 16px; }  /* outside space (not inside the form) */
-
-/* Dialog is a grid: title, subtitle, scrollable form, fixed footer */
 .modal__dialog{
-  width: min(860px, 100%);
-  margin: auto;
-  max-height: calc(100dvh - 80px);      /* match the 40px top/bottom padding */
-  overflow: hidden;
+  position: relative;
+  z-index: 1;
+  width: min(1080px, 92vw);
+  margin: 0 auto;
+  max-height: calc(100dvh - 76px);
+  background: var(--surface);
+  border-radius: 24px;
+  box-shadow: var(--shadow);
+  padding: 28px 28px 22px;
   display: grid;
-  grid-template-rows: auto auto 1fr auto; /* h2, p, FORM, FOOTER */
+  grid-template-rows: auto auto 1fr auto;
+  overflow: hidden;
 }
 
-/* Form is the only scrollable area */
+.modal__close{
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  width: 46px;
+  height: 46px;
+  border: 0;
+  border-radius: 999px;
+  background: #f2f4f6;
+  color: #334;
+  cursor: pointer;
+  font-size: 30px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 5;
+}
+
+.modal__title{
+  margin: 0 0 6px;
+  color: var(--ink);
+  font: 800 34px/1.15 system-ui;
+  padding-right: 64px;
+}
+
+.modal__subtitle{
+  margin: 0 0 16px;
+  color: var(--muted);
+  font-size: 16px;
+  line-height: 1.4;
+}
+
 #demoForm{
   overflow: auto;
-  min-height: 0;                         /* allow it to shrink inside the grid */
+  min-height: 0;
   -webkit-overflow-scrolling: touch;
-  padding-right: 2px;                    /* keep scrollbar off the edge */
-  padding-bottom: 0;                     /* no internal bottom space */
+  padding-right: 4px;
 }
 
-/* Footer stays put at the bottom of the dialog */
-.modal__footer{
-  padding-top: 12px;
-  background: transparent;
+.grid{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px 18px;
+}
+
+.field{
   display: flex;
-  justify-content: flex-start;           /* or: space-between / center */
+  flex-direction: column;
+  gap: 8px;
 }
 
-/* Submit button is normal (not sticky) */
-#submitBtn{
-  position: static;
-  box-shadow: 0 8px 24px rgba(184, 59, 94, 0.18);
+.field--full{
+  grid-column: 1 / -1;
 }
 
-/* One-column fields sooner for comfort */
+label{
+  font-weight: 700;
+  color: var(--ink);
+  font-size: 16px;
+}
+
+input,
+select,
+textarea{
+  width: 100%;
+  border: 1px solid #e1e6ea;
+  border-radius: 14px;
+  padding: 14px 16px;
+  font: 500 16px/1.4 system-ui;
+  outline: 0;
+  background: #fff;
+  color: var(--ink);
+}
+
+textarea{
+  resize: vertical;
+  min-height: 120px;
+}
+
+input:focus,
+select:focus,
+textarea:focus{
+  box-shadow: 0 0 0 3px var(--brand-weak);
+  border-color: #bfeee3;
+}
+
+.error{
+  color: var(--error);
+  min-height: 14px;
+  font-size: 12px;
+}
+
+.is-error{
+  border-color: var(--error) !important;
+  box-shadow: 0 0 0 3px rgba(215,44,44,.10) !important;
+}
+
+.privacy{
+  font-size: 13px;
+  color: var(--muted);
+  margin: 12px 0 14px;
+  line-height: 1.45;
+}
+
+.form-captcha{
+  margin: 8px 0 4px;
+}
+
+.modal__footer{
+  padding-top: 14px;
+  display: flex;
+  justify-content: flex-start;
+  background: transparent;
+}
+
+.btn-submit{
+  position: relative;
+  border: 0;
+  border-radius: 999px;
+  background: var(--accent);
+  color: #fff;
+  font-weight: 800;
+  padding: 12px 20px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 8px 24px rgba(184,59,94,.18);
+  font-size: 15px;
+}
+
+.btn-submit[disabled]{
+  opacity: .7;
+  cursor: not-allowed;
+}
+
+.spinner{
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255,255,255,.45);
+  border-top-color: #fff;
+  border-radius: 50%;
+  display: none;
+  animation: spin .7s linear infinite;
+}
+
+.btn-submit.is-loading .spinner{
+  display: inline-block;
+}
+
+@keyframes spin{
+  to{ transform: rotate(360deg); }
+}
+
+.cmms-toast-wrap{
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  z-index: 21000;
+  display: grid;
+  gap: 10px;
+  max-width: min(92vw, 420px);
+}
+
+.cmms-toast{
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 10px;
+  align-items: start;
+  padding: 12px 14px;
+  border-radius: 14px;
+  color: #fff;
+  box-shadow: 0 12px 30px rgba(0,0,0,.18);
+}
+
+.cmms-toast--error{
+  background: #b42318;
+}
+
+.cmms-toast--ok{
+  background: #127c56;
+}
+
+.cmms-toast__close{
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+body.modal-open{
+  overflow: hidden;
+}
+
 @media (max-width: 900px){
-  .grid{ grid-template-columns: 1fr; }
+  .grid{
+    grid-template-columns: 1fr;
+  }
+
+  .modal{
+    padding: 44px 12px 16px;
+  }
+
+  .modal__dialog{
+    width: min(760px, 96vw);
+    max-height: calc(100dvh - 60px);
+    border-radius: 20px;
+    padding: 22px 18px 18px;
+  }
+
+  .modal__title{
+    font-size: 28px;
+    padding-right: 58px;
+  }
+
+  .modal__subtitle{
+    font-size: 15px;
+    margin-bottom: 14px;
+  }
+
+  label{
+    font-size: 16px;
+  }
+
+  input,
+  select,
+  textarea{
+    font-size: 15px;
+    padding: 14px 14px;
+  }
 }
 
-/* Full-height mobile sheet; outside space not needed on tiny phones */
 @media (max-width: 560px){
-  .modal{ padding: 0; }
+  .modal{
+    padding: 0;
+  }
+
   .modal__dialog{
     margin: 0;
     width: 100vw;
     height: 100dvh;
     max-height: 100dvh;
     border-radius: 0;
+    padding: 20px 16px 16px;
     grid-template-rows: auto auto 1fr auto;
   }
-  #demoForm{ padding: 0 16px; }
-  .modal__footer{ padding: 12px 16px max(16px, env(safe-area-inset-bottom)); }
-  .modal__title{ font-size: 22px; }
-  .modal__subtitle{ font-size: 14px; }
-  .modal__close{ top: 8px; right: 8px; }
+
+  .modal__title{
+    font-size: 22px;
+    padding-right: 52px;
+    margin-top: 8px;
+  }
+
+  .modal__subtitle{
+    font-size: 14px;
+    margin-bottom: 12px;
+  }
+
+  .modal__close{
+    top: 10px;
+    right: 10px;
+    width: 40px;
+    height: 40px;
+    font-size: 28px;
+  }
+
+  #demoForm{
+    padding-right: 0;
+  }
+
+  .modal__footer{
+    padding-top: 12px;
+    padding-bottom: max(16px, env(safe-area-inset-bottom));
+    background: #fff;
+  }
+
+  .btn-submit{
+    min-height: 44px;
+    font-size: 15px;
+  }
+
+  .cmms-toast-wrap{
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+    max-width: none;
+  }
 }
-  

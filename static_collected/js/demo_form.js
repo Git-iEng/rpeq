@@ -197,179 +197,252 @@ const COUNTRIES = [
   const openers = document.querySelectorAll(".js-open-demo, .book-demo-btn");
   const closers = modal ? modal.querySelectorAll("[data-close-demo]") : [];
   const form = document.getElementById("demoForm");
+
   if (!modal || !form) return;
 
   const submitBtn = document.getElementById("submitBtn");
   const countrySelect = document.getElementById("country");
   const phoneInput = document.getElementById("phone");
+  const toastRoot = document.getElementById("cmmsToastRoot");
 
-  // Build countries
-  // ---- helpers ---------------------------------------------------------------
-  const normalizeDial = s => (s || "").replace(/[^0-9+]/g, "");   // "+1-242" -> "+1242"
+  const normalizeDial = (s) => (s || "").replace(/[^0-9+]/g, "");
 
-  // after we populate the <select>, cache option meta so lookups are fast
-  let COUNTRY_OPT_CACHE = [];
+  let countryCache = [];
+
   function rebuildCountryCache() {
-    COUNTRY_OPT_CACHE = Array.from(countrySelect.options)
-      .slice(1) // skip default
-      .map(o => {
+    countryCache = Array.from(countrySelect.options)
+      .slice(1)
+      .map((o) => {
         const [code, dial] = (o.value || "").split("|");
-        return { value: o.value, code, dial, nDial: normalizeDial(dial || "") };
+        return {
+          value: o.value,
+          code,
+          dial,
+          normalizedDial: normalizeDial(dial || "")
+        };
       });
   }
 
-  // find best (longest) dial code that matches the typed phone
-  function findOptionByPhone(val) {
-    const p = normalizeDial(val.trim());
-    if (!p.startsWith("+")) return null;
+  function findOptionByPhone(value) {
+    const phone = normalizeDial(value.trim());
+    if (!phone.startsWith("+")) return null;
+
     let best = null;
-    for (const opt of COUNTRY_OPT_CACHE) {
-      if (opt.nDial && p.startsWith(opt.nDial)) {
-        if (!best || opt.nDial.length > best.nDial.length) best = opt;
+
+    for (const option of countryCache) {
+      if (option.normalizedDial && phone.startsWith(option.normalizedDial)) {
+        if (!best || option.normalizedDial.length > best.normalizedDial.length) {
+          best = option;
+        }
       }
     }
+
     return best;
   }
 
-  // ensure phone value starts with the selected dial code (format preserved)
   function setPhoneDial(dial) {
     if (!dial) return;
+
     const rest = phoneInput.value.replace(/^\+\s*[\d\-\s()]+/, "").trim();
     phoneInput.value = `${dial}${rest ? " " + rest : ""}`;
   }
 
-  // ---- build countries (unchanged) ------------------------------------------
-  const frag = document.createDocumentFragment();
-  const def = document.createElement("option");
-  def.value = ""; def.textContent = "-- Select Country --";
-  frag.appendChild(def);
-  COUNTRIES.forEach(c => {
-    const o = document.createElement("option");
-    o.value = `${c.code}|${c.dial}`;
-    o.textContent = `${c.name} (${c.dial})`;
-    frag.appendChild(o);
-  });
-  countrySelect.appendChild(frag);
-  rebuildCountryCache(); // build cache now that options exist
+  function clearErrors() {
+    form.querySelectorAll(".error").forEach((el) => {
+      el.textContent = "";
+    });
 
-  // ---- phone -> country (robust) --------------------------------------------
-  phoneInput.addEventListener("input", () => {
-    const match = findOptionByPhone(phoneInput.value);
-    if (match) {
-      countrySelect.value = match.value;
-    }
-  });
-
-  // ---- country -> phone (autofill dial + update placeholder) -----------------
-  countrySelect.addEventListener("change", () => {
-    const [code, dial] = (countrySelect.value || "").split("|");
-    if (!dial) {
-      // user picked the default blank option
-      phoneInput.placeholder = "+61 4xx xxx xxx"; // or your default
-      return;
-    }
-    // set placeholder to reflect selected country
-    phoneInput.placeholder = `${dial} …`;
-    // make phone start with the chosen dial code
-    const current = normalizeDial(phoneInput.value);
-    if (!current.startsWith(normalizeDial(dial))) {
-      // replace any existing +prefix with the selected dial
-      setPhoneDial(dial);
-    } else {
-      // normalize formatting to the canonical dial (keeps remainder)
-      setPhoneDial(dial);
-    }
-  });
-
-
-  // modal open/close
-  const open = e => { e?.preventDefault(); modal.classList.add("is-open"); };
-  const close = e => { e?.preventDefault(); modal.classList.remove("is-open"); };
-  openers.forEach(el => el.addEventListener("click", open));
-  closers.forEach(el => el.addEventListener("click", close));
-  document.addEventListener("keydown", e => e.key === "Escape" && close());
-
-  // errors
-  const err = (name, msg = "") => {
-    const el = document.querySelector(`[data-error-for="${name}"]`);
-    if (el) el.textContent = msg;
-  };
-  const clearErr = () => form.querySelectorAll(".error").forEach(e => e.textContent = "");
-
-  // auto select country from +code
-  phoneInput.addEventListener("input", () => {
-    const m = phoneInput.value.trim().match(/^\+[\d]{1,4}/);
-    if (m) {
-      const dial = m[0];
-      const opt = Array.from(countrySelect.options).find(o => o.value.endsWith("|" + dial));
-      if (opt) countrySelect.value = opt.value;
-    }
-  });
-function validate() {
-  clearErr();
-  // clear old visual errors
-  form.querySelectorAll('.is-error').forEach(el => el.classList.remove('is-error'));
-
-  // helper: mark + toast + focus the first error
-  const fail = (name, msg) => {
-    err(name, msg);
-    showToast(msg, 'error');                 // <- toast popup
-    const input = form.querySelector(`[name="${name}"]`);
-    if (input) {
-      input.classList.add('is-error');
-      input.setAttribute('aria-invalid', 'true');
-      input.scrollIntoView({ block: 'center', behavior: 'smooth' });
-      // delay focus a tick so scroll works smoothly
-      setTimeout(() => input.focus({ preventScroll: true }), 250);
-    }
-    return false;
-  };
-
-  const full_name = form.full_name.value.trim();
-  if (!/^[A-Za-z\s'.-]{2,}$/.test(full_name))
-    return fail("full_name", "Please enter a valid full name (letters only).");
-
-  const company = form.company.value.trim();
-  if (company.length < 2)
-    return fail("company", "Company is required.");
-
-  const email = form.email.value.trim();
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email))
-    return fail("email", "Enter a valid email address.");
-
-  const phone = form.phone.value.trim();
-  if (!/^\+?\d[\d\s\-()]{6,}$/.test(phone))
-    return fail("phone", "Enter a valid phone number.");
-
-  if (!form.country.value)
-    return fail("country", "Please select a country.");
-
-  return true; // all good
-}
-
-
-  // loading
-  function setLoading(is) {
-    if (is) { submitBtn.classList.add("is-loading"); submitBtn.disabled = true; }
-    else { submitBtn.classList.remove("is-loading"); submitBtn.disabled = false; }
+    form.querySelectorAll(".is-error").forEach((el) => {
+      el.classList.remove("is-error");
+      el.removeAttribute("aria-invalid");
+    });
   }
 
-  form.addEventListener("submit", (e) => {
-    if (!validate()) { e.preventDefault(); return; }
-    setLoading(true); // server redirects on success
+  function setError(name, message = "") {
+    const errorEl = document.querySelector(`[data-error-for="${name}"]`);
+    if (errorEl) errorEl.textContent = message;
+  }
+
+  function showToast(message, type = "error", timeoutMs = 4000) {
+    if (!toastRoot) return;
+
+    const toast = document.createElement("div");
+    toast.className = `cmms-toast ${type === "ok" ? "cmms-toast--ok" : "cmms-toast--error"}`;
+    toast.innerHTML = `
+      <span aria-hidden="true">${type === "ok" ? "✔️" : "⚠️"}</span>
+      <div>${message}</div>
+      <button class="cmms-toast__close" type="button" aria-label="Close">×</button>
+    `;
+
+    toastRoot.appendChild(toast);
+
+    const removeToast = () => {
+      if (toast.parentNode) toast.remove();
+    };
+
+    const closeBtn = toast.querySelector(".cmms-toast__close");
+    if (closeBtn) {
+      closeBtn.addEventListener("click", removeToast);
+    }
+
+    window.setTimeout(removeToast, timeoutMs);
+  }
+
+  function openModal(event) {
+    event?.preventDefault();
+    event?.stopPropagation();
+
+    modal.classList.add("is-open");
+    modal.setAttribute("aria-hidden", "false");
+    document.body.classList.add("modal-open");
+  }
+
+  function closeModal(event) {
+    event?.preventDefault();
+
+    modal.classList.remove("is-open");
+    modal.setAttribute("aria-hidden", "true");
+    document.body.classList.remove("modal-open");
+  }
+
+  function setLoading(isLoading) {
+    if (!submitBtn) return;
+
+    if (isLoading) {
+      submitBtn.classList.add("is-loading");
+      submitBtn.disabled = true;
+    } else {
+      submitBtn.classList.remove("is-loading");
+      submitBtn.disabled = false;
+    }
+  }
+
+  function fail(name, message) {
+    setError(name, message);
+    showToast(message, "error");
+
+    const input = form.querySelector(`[name="${name}"]`);
+    if (input) {
+      input.classList.add("is-error");
+      input.setAttribute("aria-invalid", "true");
+      input.scrollIntoView({ block: "center", behavior: "smooth" });
+      window.setTimeout(() => {
+        input.focus({ preventScroll: true });
+      }, 250);
+    }
+
+    return false;
+  }
+
+  function validate() {
+    clearErrors();
+
+    const fullName = form.full_name.value.trim();
+    if (!/^[A-Za-z\s'.-]{2,}$/.test(fullName)) {
+      return fail("full_name", "Please enter a valid full name.");
+    }
+
+    const company = form.company.value.trim();
+    if (company.length < 2) {
+      return fail("company", "Company is required.");
+    }
+
+    const email = form.email.value.trim();
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) {
+      return fail("email", "Enter a valid email address.");
+    }
+
+    const phone = form.phone.value.trim();
+    if (!/^\+?\d[\d\s\-()]{6,}$/.test(phone)) {
+      return fail("phone", "Enter a valid phone number.");
+    }
+
+    if (!form.country.value) {
+      return fail("country", "Please select a country.");
+    }
+
+    return true;
+  }
+
+  function buildCountries() {
+    if (!countrySelect) return;
+
+    const frag = document.createDocumentFragment();
+
+    const def = document.createElement("option");
+    def.value = "";
+    def.textContent = "-- Select Country --";
+    frag.appendChild(def);
+
+    COUNTRIES.forEach((country) => {
+      const option = document.createElement("option");
+      option.value = `${country.code}|${country.dial}`;
+      option.textContent = `${country.name} (${country.dial})`;
+      frag.appendChild(option);
+    });
+
+    countrySelect.innerHTML = "";
+    countrySelect.appendChild(frag);
+    rebuildCountryCache();
+  }
+
+  buildCountries();
+
+  openers.forEach((el) => {
+    el.addEventListener("click", openModal);
+  });
+
+  closers.forEach((el) => {
+    el.addEventListener("click", closeModal);
+  });
+
+  modal.addEventListener("click", function (event) {
+    if (event.target === modal) {
+      closeModal();
+    }
+  });
+
+  document.addEventListener("keydown", function (event) {
+    if (event.key === "Escape" && modal.classList.contains("is-open")) {
+      closeModal();
+    }
+  });
+
+  if (phoneInput) {
+    phoneInput.addEventListener("input", function () {
+      const match = findOptionByPhone(phoneInput.value);
+      if (match) {
+        countrySelect.value = match.value;
+      }
+    });
+  }
+
+  if (countrySelect) {
+    countrySelect.addEventListener("change", function () {
+      const [, dial] = (countrySelect.value || "").split("|");
+
+      if (!dial) {
+        phoneInput.placeholder = "+61 4xx xxx xxx";
+        return;
+      }
+
+      phoneInput.placeholder = `${dial} …`;
+
+      const current = normalizeDial(phoneInput.value);
+      if (!current.startsWith(normalizeDial(dial))) {
+        setPhoneDial(dial);
+      } else {
+        setPhoneDial(dial);
+      }
+    });
+  }
+
+  form.addEventListener("submit", function (event) {
+    if (!validate()) {
+      event.preventDefault();
+      return;
+    }
+
+    setLoading(true);
   });
 })();
-
-function showToast(msg, type='error', timeoutMs=4000){
-  const root = document.getElementById('cmmsToastRoot'); if(!root) return;
-  const el = document.createElement('div');
-  el.className = 'cmms-toast ' + (type==='ok' ? 'cmms-toast--ok' : 'cmms-toast--error');
-  el.innerHTML = `<span aria-hidden="true">${type==='ok'?'✔️':'⚠️'}</span>
-                  <div>${msg}</div>
-                  <button class="cmms-toast__close" aria-label="Close">×</button>`;
-  root.appendChild(el);
-  const remove = () => el.remove();
-  el.querySelector('.cmms-toast__close').addEventListener('click', remove);
-  setTimeout(remove, timeoutMs);
-}
-

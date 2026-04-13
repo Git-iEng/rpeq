@@ -48,8 +48,8 @@
           </li>
 
           <li class="dropdown__item nav__cta-item">
-            <button type="button" class="book-demo-btn js-open-demo" data-scroll-to data-target="#request-demo">
-              Submit Inquiry
+            <button type="button" class="book-demo-btn js-open-demo" data-target="#demoModal">
+                Submit Inquiry
             </button>
           </li>
         </ul>
@@ -57,7 +57,6 @@
     </nav>
   </header>
 
-  <script src="{% static 'js/header.js' %}"></script>
   <script defer src="{% static 'js/demo_form.js' %}"></script>
 
   <script>
@@ -122,7 +121,7 @@
 
           e.preventDefault();
 
-          if (targetSel === '#request-demo') {
+      if (targetSel === '#demoModal') {
             closeMenu();
             return;
           }
